@@ -6,6 +6,8 @@ import "../styles/Login.css";
 function Login() {
   const navigate = useNavigate();
 
+  const [loginType, setLoginType] = useState("student");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,13 +31,6 @@ function Login() {
           withCredentials: true,
         }
       );
-      localStorage.setItem(
-  "token",
-  res.data.token
-);
-
-
-      console.log("Login Response:", res.data);
 
       localStorage.setItem(
         "userId",
@@ -52,10 +47,12 @@ function Login() {
         res.data.user.role
       );
 
-      console.log(
-        "Saved Role:",
-        localStorage.getItem("role")
-      );
+      if (res.data.token) {
+        localStorage.setItem(
+          "token",
+          res.data.token
+        );
+      }
 
       alert(res.data.message);
 
@@ -65,11 +62,9 @@ function Login() {
         navigate("/quiz");
       }
     } catch (error) {
-      console.log(error);
-
       alert(
         error.response?.data?.message ||
-        "Login Failed"
+          "Login Failed"
       );
     }
   };
@@ -77,13 +72,44 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1>Quiz Craft AI</h1>
+        <h1>🚀 Quiz Craft AI</h1>
+
+        <div className="login-tabs">
+          <button
+            type="button"
+            className={
+              loginType === "student"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setLoginType("student")
+            }
+          >
+            🎓 Student
+          </button>
+
+          <button
+            type="button"
+            className={
+              loginType === "admin"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setLoginType("admin")
+            }
+          >
+            👨‍💼 Admin
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
-            placeholder="Enter Email"
+            placeholder={`Enter ${loginType} Email`}
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -92,12 +118,19 @@ function Login() {
             type="password"
             name="password"
             placeholder="Enter Password"
+            value={formData.password}
             onChange={handleChange}
             required
           />
 
-          <button className="login-btn">
-            Login
+          <button
+            type="submit"
+            className="login-btn"
+          >
+            Login as{" "}
+            {loginType === "admin"
+              ? "Admin"
+              : "Student"}
           </button>
         </form>
 
