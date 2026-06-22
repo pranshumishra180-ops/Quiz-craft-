@@ -204,3 +204,25 @@ body{
   color: #22d3ee;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .login-card,
+  .register-card,
+  .auth-card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .login-card h1,
+  .register-card h1,
+  .auth-card h1 {
+    font-size: 32px;
+  }
+
+  .login-card input,
+  .register-card input,
+  .auth-card input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

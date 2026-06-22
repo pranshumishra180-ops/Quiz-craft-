@@ -216,3 +216,27 @@
     0 0 15px
     rgba(6,182,212,0.3);
 }
+
+
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 20px;
+  }
+
+  .quiz-title {
+    font-size: 32px;
+  }
+
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-card {
+    padding: 20px;
+  }
+
+  .quiz-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}

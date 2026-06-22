@@ -54,3 +54,14 @@
     width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .user-actions {
+    flex-direction: column;
+  }
+
+  .role-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}
