@@ -56,58 +56,68 @@ async function registerUser(req , res){
         })
     }   
 }
+async function loginUser(req, res) {
+  const { username, email, password, role } = req.body;
 
-async function loginUser(req,res){
-    const{ username, email,password} = req.body;
+  const user = await userModel.findOne({
+    $or: [
+      { email },
+      { username }
+    ]
+  }).select("+password");
 
-    const user = await userModel.findOne({
-        $or:[
-      { email},
-      {username}
-        ]
+  if (!user) {
+    return res.status(400).json({
+      message: "Invalid Credentials"
+    });
+  }
 
-        
-    }).select("+password")
+  // Login type check
+  if (role && role !== user.role) {
+    return res.status(400).json({
+      message: "Invalid login type"
+    });
+  }
 
-    if(!user){
-        return res.status(400).json({
-            message:"Invalid Credentials"
+  const isPasswordValid = await bcrypt.compare(
+    password,
+    user.password
+  );
 
-        })
+  if (!isPasswordValid) {
+    return res.status(400).json({
+      message: "Invalid Credentials"
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      id: user._id,
+      username: user.username,
+      role: user.role,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "15d",
     }
+  );
 
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
 
-        const isPasswordValid = await bcrypt.compare(password,user.password);
-        
-        if(!isPasswordValid){
-        return res.status(400).json({
-            message:"Invalid Credentials"
-        })
-    }
-
-    const token = jwt.sign(
-        {
-            id:user._id,
-            username:user.username,
-                role: user.role,
-        },
-        process.env.JWT_SECRET,
-        {
-            expiresIn:"15d"
-        }
-    )
-    res.cookie("token",token)
-
-   return res.status(200).json({
-    message:"User Logged in Successfully!",
-    user:{
-        id:user._id,
-        username:user.username,
-        email:user.email,
-        role:user.role
-    }
-})
-
+  return res.status(200).json({
+    message: "User Logged in Successfully!",
+    token, // 👈 frontend ke liye
+    user: {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    },
+  });
 }
 
 module.exports ={

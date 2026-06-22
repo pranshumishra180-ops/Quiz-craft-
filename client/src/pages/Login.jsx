@@ -20,54 +20,57 @@ function Login() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await api.post(
-        "/auth/login",
-        formData,
-        {
-          withCredentials: true,
-        }
-      );
-
-      localStorage.setItem(
-        "userId",
-        res.data.user.id
-      );
-
-      localStorage.setItem(
-        "username",
-        res.data.user.username
-      );
-
-      localStorage.setItem(
-        "role",
-        res.data.user.role
-      );
-
-      if (res.data.token) {
-        localStorage.setItem(
-          "token",
-          res.data.token
-        );
+  try {
+    const res = await api.post(
+      "/auth/login",
+      {
+        ...formData,
+        role: loginType,
+      },
+      {
+        withCredentials: true,
       }
+    );
 
-      alert(res.data.message);
+    localStorage.setItem(
+      "userId",
+      res.data.user.id
+    );
 
-      if (res.data.user.role === "admin") {
-        navigate("/dashboard");
-      } else {
-        navigate("/quiz");
-      }
-    } catch (error) {
-      alert(
-        error.response?.data?.message ||
-          "Login Failed"
+    localStorage.setItem(
+      "username",
+      res.data.user.username
+    );
+
+    localStorage.setItem(
+      "role",
+      res.data.user.role
+    );
+
+    if (res.data.token) {
+      localStorage.setItem(
+        "token",
+        res.data.token
       );
     }
-  };
+
+    alert(res.data.message);
+
+    if (res.data.user.role === "admin") {
+      navigate("/dashboard");
+    } else {
+      navigate("/quiz");
+    }
+  } catch (error) {
+    alert(
+      error.response?.data?.message ||
+      "Login Failed"
+    );
+  }
+};
 
   return (
     <div className="login-container">
