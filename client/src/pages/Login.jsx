@@ -6,20 +6,15 @@ import "../styles/Login.css";
 function Login() {
   const navigate = useNavigate();
 
-  const [loginType, setLoginType] =
-    useState("student");
-
-  const [formData, setFormData] =
-    useState({
-      email: "",
-      password: "",
-    });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -34,6 +29,13 @@ function Login() {
           withCredentials: true,
         }
       );
+      localStorage.setItem(
+  "token",
+  res.data.token
+);
+
+
+      console.log("Login Response:", res.data);
 
       localStorage.setItem(
         "userId",
@@ -50,21 +52,24 @@ function Login() {
         res.data.user.role
       );
 
+      console.log(
+        "Saved Role:",
+        localStorage.getItem("role")
+      );
+
       alert(res.data.message);
 
-      if (
-        res.data.user.role ===
-        "admin"
-      ) {
+      if (res.data.user.role === "admin") {
         navigate("/dashboard");
       } else {
         navigate("/quiz");
       }
     } catch (error) {
+      console.log(error);
+
       alert(
-        error.response?.data
-          ?.message ||
-          "Login Failed"
+        error.response?.data?.message ||
+        "Login Failed"
       );
     }
   };
@@ -74,59 +79,21 @@ function Login() {
       <div className="login-card">
         <h1>Quiz Craft AI</h1>
 
-        <div className="login-tabs">
-          <button
-            className={
-              loginType === "student"
-                ? "active"
-                : ""
-            }
-            onClick={() =>
-              setLoginType(
-                "student"
-              )
-            }
-          >
-            🎓 Student
-          </button>
-
-          <button
-            className={
-              loginType === "admin"
-                ? "active"
-                : ""
-            }
-            onClick={() =>
-              setLoginType(
-                "admin"
-              )
-            }
-          >
-            👨‍💼 Admin
-          </button>
-        </div>
-
-        <form
-          onSubmit={
-            handleSubmit
-          }
-        >
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
             placeholder="Enter Email"
-            onChange={
-              handleChange
-            }
+            onChange={handleChange}
+            required
           />
 
           <input
             type="password"
             name="password"
             placeholder="Enter Password"
-            onChange={
-              handleChange
-            }
+            onChange={handleChange}
+            required
           />
 
           <button className="login-btn">
