@@ -1,0 +1,122 @@
+.result-page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(circle at top left,
+    #4f46e5,
+    transparent 30%),
+
+    radial-gradient(circle at bottom right,
+    #06b6d4,
+    transparent 30%),
+
+    #0f172a;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.result-card {
+  width: 450px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(15px);
+
+  border-radius: 25px;
+
+  padding: 40px;
+
+  text-align: center;
+
+  color: white;
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.3);
+}
+
+.result-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.result-card h1 {
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.score-circle {
+  width: 140px;
+  height: 140px;
+
+  margin: 0 auto 25px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #06b6d4
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow:
+    0 0 25px rgba(99,102,241,0.5);
+}
+
+.score-circle span {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.score-circle small {
+  font-size: 14px;
+}
+
+.result-text {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.result-buttons button {
+  border: none;
+  padding: 14px;
+
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #06b6d4
+  );
+
+  color: white;
+
+  transition: 0.3s;
+}
+
+.result-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: rgba(255,255,255,0.1) !important;
+}

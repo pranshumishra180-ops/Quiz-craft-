@@ -1,0 +1,40 @@
+.user-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.role-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.role-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+}
+
+.delete-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
