@@ -57,3 +57,21 @@
 .logout-btn:hover {
   transform: translateY(-2px);
 }
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    width: 100%;
+  }
+}

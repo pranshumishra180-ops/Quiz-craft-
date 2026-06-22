@@ -38,3 +38,19 @@
   transform: translateY(-3px);
   box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
 }
+@media (max-width: 768px) {
+  .user-card {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .user-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user-buttons button {
+    width: 100%;
+  }
+}
