@@ -13,6 +13,8 @@ import Leaderboard from "./pages/Leaderboard";
 import ManageUsers from "./pages/ManageUsers";
 import UploadPdf from "./pages/UploadPdf";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MyResult from "./pages/MyResult";
+
 
 function App() {
   return (
@@ -68,6 +70,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+            <Route
+  path="/my-results"
+  element={
+    <ProtectedRoute>
+      <MyResult />
+    </ProtectedRoute>
+  }
+/>
 
         <Route
           path="/upload-pdf"
