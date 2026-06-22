@@ -11,7 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import QuizList from "./pages/QuizList";
 import Leaderboard from "./pages/Leaderboard";
 import ManageUsers from "./pages/ManageUsers";
-import UploadPDF from "./pages/UploadPDF";
+import UploadPdf from "./pages/UploadPdf";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
