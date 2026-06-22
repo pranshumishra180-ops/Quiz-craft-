@@ -73,7 +73,7 @@ function App() {
           path="/upload-pdf"
           element={
             <ProtectedRoute>
-              <UploadPDF />
+              <UploadPdf />
             </ProtectedRoute>
           }
         />
