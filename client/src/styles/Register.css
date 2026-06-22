@@ -226,3 +226,24 @@ body{
     box-sizing: border-box;
   }
 }
+.register-card h1 {
+  color: white;
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .register-card h1 {
+    font-size: 32px;
+    white-space: normal;
+  }
+}
+.register-card h1 {
+  color: white;
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  text-align: center;
+  white-space: nowrap;
+}
